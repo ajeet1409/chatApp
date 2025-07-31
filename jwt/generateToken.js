@@ -1,0 +1,18 @@
+
+import jwt from 'jsonwebtoken'
+
+
+ export const generateToken=(userId,res)=>{
+
+    const token = jwt.sign({ userId }, process.env.JWT_TOKEN , { expiresIn: "1hr" });
+    
+   
+        res.cookie("token", token, {
+          httpOnly: true, //xss
+          secure: true,
+          sameSite:true// csrf
+        });
+
+          //  res.status(201).json( {token})
+
+}
