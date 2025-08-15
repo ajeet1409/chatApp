@@ -18,7 +18,7 @@ const Port = process.env.PORT
 const URL = process.env.MONGODB_URI;
 
 app.use(cors({
-    origin: process.env.origin,   // frontend url 
+    origin: process.env.ORIGIN,   // frontend url 
     credentials:true 
 }))
 app.use(express.json())

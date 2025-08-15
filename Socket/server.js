@@ -1,15 +1,18 @@
 import { Server } from "socket.io";
+import dotenv from 'dotenv'
 import http from "http";
 import express from "express";
 
 const app = express();
+dotenv.config()
 
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: process.env.origin,
+    origin: process.env.ORIGIN,
     method: ["GET", "POST"],
+    credentials:true
   },
 });
 
