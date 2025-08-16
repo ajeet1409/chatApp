@@ -72,9 +72,11 @@ export const login = async (req, res) => {
     //   return res.status(400).json({ message: "password not match" });
     // }
  
-    bcrypt.compare(password, user.password, function (err, result) {
+    bcrypt.compare(password, user.password,  function (err, result) {
       if (result) {
-        generateToken(user._id, res);
+       const token =  generateToken(user._id, res);
+       console.log("login",token);
+       
         // const token = jwt.sign(
         //   { email: user.email, userId: user._id },
         //   "secret",
@@ -84,10 +86,12 @@ export const login = async (req, res) => {
         // res.cookie("token", token, {
         //   httpOnly: true,
         //   secure: true,
-        // });
+        // });,
+       
         return res.status(200).json({
           message: "user login successfully",
           user: {
+            
             userId: user._id,
             username: user.username,
             email: user.email,
@@ -123,10 +127,18 @@ export const logout=(req,res)=>{
    try {
 
     const isLoggedUser = req.user._id
+    const token = req.cookies.token; // backend reads it
+    if (!token) return res.status(401).json({ message: "Unauthorized" });
 // ! **jo user login hai vo show nahi karegaa
     const allUsers= await  userModel.find({_id:{$ne:isLoggedUser}}).select("-password")
 
+    
    res.status(201).json({allUsers})
+  //  res.status(201).json(token)
+  // res.status(200).json({
+  //   token,
+  //   allUsers
+  // });
   
    } catch (error) {
      console.log("error in all user controller"+error);

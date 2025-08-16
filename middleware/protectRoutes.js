@@ -8,7 +8,7 @@ import userModel from '../model/userModel.js';
 
  const protectRoutes =async (req, res, next) => {
   const token = req.cookies.token;
-  console.log("Token:", token);
+  // console.log("Token:", token);
 
   if (!token) {
     return res.status(401).json({ message: "Token not provided" });

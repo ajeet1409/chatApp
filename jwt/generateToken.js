@@ -10,9 +10,10 @@ import jwt from 'jsonwebtoken'
         res.cookie("token", token, {
           httpOnly: true, //xss
           secure: true,
-          sameSite:true// csrf
+          sameSite: "strict"// csrf
         });
 
-          //  res.status(201).json( {token})
+          // localStorage.setItem("token",token)
+       
 
 }

@@ -21,6 +21,15 @@ app.use(cors({
     origin: process.env.ORIGIN,   // frontend url 
     credentials:true 
 }))
+
+// app.get("/api/getUserInfo", (req, res) => {
+//     const token = req.cookies.token; // backend reads it
+//     if (!token) return res.status(401).json({ message: "Unauthorized" });
+  
+//     // verify token...
+//     res.json(token);
+//   });
+
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
