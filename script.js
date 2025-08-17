@@ -1,6 +1,7 @@
 // const express =require('express')
 import express from "express"
 
+import path from 'path'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import userRoute from "./routes/userRoutes.js"
@@ -55,13 +56,13 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-app.get('/he', function (req, res) {
-    res.send('hello')
-})
+// app.get('/he', function (req, res) {
+//     res.send('hello')
+// })
 
-app.get("/user/:username",function(req,res){
-    res.send(`name :${req.params.username}`)
-})
+// app.get("/user/:username",function(req,res){
+//     res.send(`name :${req.params.username}`)
+// })
 
 
 
