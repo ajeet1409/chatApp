@@ -46,6 +46,13 @@ try {
     
 }
 
+if (process.env.NODE_ENV === "production") {
+    const dirPath = path.resolve()
+    app.use(express.static("./frontend/dist"))
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(dirPath, "./frontend/dist", "index.html"))
+    })
+}
 
 
 app.get('/he', function (req, res) {
@@ -55,6 +62,8 @@ app.get('/he', function (req, res) {
 app.get("/user/:username",function(req,res){
     res.send(`name :${req.params.username}`)
 })
+
+
 
 server.listen(Port, function (req, res) {
     console.log(`server is running on port ${Port}`);

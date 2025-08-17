@@ -74,7 +74,7 @@ export const login = async (req, res) => {
  
     bcrypt.compare(password, user.password,  function (err, result) {
       if (result) {
-       const token =  generateToken(user._id, res);
+        generateToken(user._id, res);
        console.log("login",token);
        
         // const token = jwt.sign(
@@ -127,18 +127,13 @@ export const logout=(req,res)=>{
    try {
 
     const isLoggedUser = req.user._id
-    const token = req.cookies.token; // backend reads it
-    if (!token) return res.status(401).json({ message: "Unauthorized" });
+   
 // ! **jo user login hai vo show nahi karegaa
     const allUsers= await  userModel.find({_id:{$ne:isLoggedUser}}).select("-password")
 
     
    res.status(201).json({allUsers})
-  //  res.status(201).json(token)
-  // res.status(200).json({
-  //   token,
-  //   allUsers
-  // });
+ 
   
    } catch (error) {
      console.log("error in all user controller"+error);
